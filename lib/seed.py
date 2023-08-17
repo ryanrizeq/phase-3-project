@@ -1,6 +1,7 @@
 from faker import Faker
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from random import choice as rc
 
 from models import Dog, Kennel, Owner
 
@@ -10,11 +11,20 @@ engine = create_engine('sqlite:///doggy_daycare.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 
-def create_data():
-    dogs = [Dog(
-        name = fake.language_name(),
-        breed = fake.animal.dog()
-    ) for i in range(20)]
+session.query(Dog).delete()
+session.query(Kennel).delete()
 
-    session.add_all(dogs)
-    session.commit()
+dogs = [Dog(
+    name = fake.language_name(),
+    breed = fake.job()
+) for i in range(20)]
+
+kennel_sizes = ['Small', 'Medium', 'Large']
+kennels = [Kennel(
+    number = fake.random_int(min=1, max =20),
+    size = rc(kennel_sizes),
+    occupied_nights = fake.random_int(min=1, max=15)
+) for i in range(20)]
+
+session.add_all(dogs + kennels)
+session.commit()
