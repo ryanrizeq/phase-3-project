@@ -26,5 +26,10 @@ kennels = [Kennel(
     occupied_nights = fake.random_int(min=1, max=15)
 ) for i in range(20)]
 
-session.add_all(dogs + kennels)
+owners = [Owner(
+    first_name = fake.first_name(),
+    last_name = fake.last_name()
+) for i in range(17)]
+
+session.add_all(dogs + kennels + owners)
 session.commit()
