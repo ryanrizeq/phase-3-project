@@ -17,3 +17,10 @@ class Kennel(Base):
     number = Column(Integer())
     size = Column(String())
     occupied_nights = Column(Integer())
+
+class Owner(Base):
+    __tablename__ = 'owners'
+
+    id = Column(Integer(), primary_key=True)
+    first_name = Column(String())
+    last_name = Column(String())
