@@ -11,4 +11,9 @@ class Dog(Base):
     breed = Column(String())
 
 class Kennel(Base):
-    pass
+    __tablename__ = 'kennels'
+
+    id = Column(Integer(), primary_key=True)
+    number = Column(Integer())
+    size = Column(String())
+    occupied_nights = Column(Integer())
