@@ -13,6 +13,7 @@ session = Session()
 
 session.query(Dog).delete()
 session.query(Kennel).delete()
+session.query(Owner).delete()
 
 dogs = [Dog(
     name = fake.language_name(),
