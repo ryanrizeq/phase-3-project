@@ -13,6 +13,11 @@ class Dog(Base):
 
     owner_id = Column(Integer(), ForeignKey('owners.id'))
 
+    def __repr__(self):
+        return f"Dog {self.id}:" \
+            + f"{self.name}" \
+            + f"Breed: {self.breed}"
+
 class Kennel(Base):
     __tablename__ = 'kennels'
 
@@ -23,6 +28,11 @@ class Kennel(Base):
 
     owner_id = Column(Integer(), ForeignKey('owners.id'))
 
+    def __repr__(self):
+        return f"Kennel {self.number}:" \
+            + f"Size: {self.size}" \
+            + f"# Nights: {self.occupied_nights}"
+
 class Owner(Base):
     __tablename__ = 'owners'
 
@@ -32,3 +42,8 @@ class Owner(Base):
 
     dogs = relationship("Dog", backref=backref('owner'))
     kennels = relationship("Kennel", backref=backref('owner'))
+
+    def __repr__(self):
+        return f"Owner {self.id}:" \
+            + f"{self.first_name}" \
+            + f"Breed: {self.last_name}"
