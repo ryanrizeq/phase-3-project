@@ -17,14 +17,16 @@ session.query(Owner).delete()
 
 dogs = [Dog(
     name = fake.language_name(),
-    breed = fake.job()
+    breed = fake.job(),
+    owner_id = fake.random_int(min=1, max=17)
 ) for i in range(20)]
 
 kennel_sizes = ['Small', 'Medium', 'Large']
 kennels = [Kennel(
     number = fake.random_int(min=1, max =20),
     size = rc(kennel_sizes),
-    occupied_nights = fake.random_int(min=1, max=15)
+    occupied_nights = fake.random_int(min=1, max=15),
+    owner_id = fake.random_int(min=1, max=17)
 ) for i in range(20)]
 
 owners = [Owner(

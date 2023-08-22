@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -6,6 +6,7 @@ Base = declarative_base()
 
 class Dog(Base):
     __tablename__ = 'dogs'
+    __table_args__ = (PrimaryKeyConstraint("id"), )
 
     id = Column(Integer(), primary_key=True)
     name = Column(String())
@@ -20,6 +21,7 @@ class Dog(Base):
 
 class Kennel(Base):
     __tablename__ = 'kennels'
+    __table_args__ = (PrimaryKeyConstraint("id"), )
 
     id = Column(Integer(), primary_key=True)
     number = Column(Integer())
